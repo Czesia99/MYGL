@@ -74,4 +74,39 @@ namespace mygl
 
         glBindTextureUnit(0, texture);
     }
+
+    void loadTextureArrayId(std::vector<std::string>files, unsigned int &texture, int id, int width, int height, int min_filter, int mag_filter, int wrap)
+    {
+        stbi_set_flip_vertically_on_load(true);
+        glCreateTextures(GL_TEXTURE_2D_ARRAY, 1, &texture);
+        int nrComponents;
+        glTextureStorage3D(texture, 1, GL_RGBA8, width, height, files.size());
+
+        for (int i = id; i < files.size(); i++)
+        {
+            unsigned char *data = stbi_load(files[i].c_str(), &width, &height, &nrComponents, 0);
+            if (data) {
+                GLenum format;
+                if (nrComponents == 1)
+                    format = GL_RED;
+                else if (nrComponents == 3)
+                    format = GL_RGB;
+                else if (nrComponents == 4)
+                    format = GL_RGBA;
+                
+                glTextureSubImage3D(texture, 0, 0, 0, i, width, height, 1, format, GL_UNSIGNED_BYTE, data);
+                stbi_image_free(data);
+            } else
+            {
+                std::cout << "Texture failed to load at path: " << files[i] << std::endl;
+            }
+        }
+
+        glTextureParameteri(texture, GL_TEXTURE_WRAP_S, wrap);
+        glTextureParameteri(texture, GL_TEXTURE_WRAP_T, wrap);
+        glTextureParameteri(texture, GL_TEXTURE_MIN_FILTER, min_filter);
+        glTextureParameteri(texture, GL_TEXTURE_MAG_FILTER, mag_filter);
+
+        glBindTextureUnit(0, texture);
+    }
 }
