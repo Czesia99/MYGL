@@ -82,7 +82,7 @@ namespace mygl
         int nrComponents;
         glTextureStorage3D(texture, 1, GL_RGBA8, width, height, files.size());
 
-        for (int i = id; i < files.size(); i++)
+        for (int i = 0; i < files.size(); i++)
         {
             unsigned char *data = stbi_load(files[i].c_str(), &width, &height, &nrComponents, 0);
             if (data) {
@@ -94,7 +94,7 @@ namespace mygl
                 else if (nrComponents == 4)
                     format = GL_RGBA;
                 
-                glTextureSubImage3D(texture, 0, 0, 0, i, width, height, 1, format, GL_UNSIGNED_BYTE, data);
+                glTextureSubImage3D(texture, 0, 0, 0, i + id, width, height, 1, format, GL_UNSIGNED_BYTE, data);
                 stbi_image_free(data);
             } else
             {
