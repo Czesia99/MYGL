@@ -27,10 +27,9 @@ namespace mygl
 
             Scene *current_scene = nullptr;
             std::vector<Scene*> scenes;
-            // Sound sound_manager;
         
-        private:
             DefaultScene *default_scene;
+
         private:
             GLFWwindow *createWindow();
             int loadGlad();

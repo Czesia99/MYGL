@@ -59,10 +59,7 @@ namespace mygl
 
     void DefaultScene::mouseCallback(GLFWwindow* window, int x, int y, int dx, int dy)
     {
-        std::cout << "dx = " << dx << std::endl;
-        std::cout << "dy = " << dy << std::endl;
         camera.processMouseMovement((float)dx, (float)-dy);
-
     }
 
     void DefaultScene::leftClickCallback(GLFWwindow* window, int button, int action, int mods)
