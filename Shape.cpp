@@ -23,6 +23,7 @@ namespace mygl {
     void Triangle::render(Shader shader, const ICamera &camera)
     {
         shader.use();
+
         glm::mat4 mat = transform.getModelMatrix();
         glm::mat4 projection = camera.getProjectionMatrix();
         glm::mat4 view = camera.getViewMatrix();
@@ -94,18 +95,6 @@ namespace mygl {
     void Cube::render(Shader shader, const ICamera &camera)
     {
         shader.use();
-        if (diffuse_texture) {
-            shader.setInt("material.diffuse", 0);
-            // glActiveTexture(GL_TEXTURE0);
-            // glBindTexture(GL_TEXTURE_2D, diffuse_texture);
-            glBindTextureUnit(0, diffuse_texture);
-        }
-
-        if (specular_texture) {
-            shader.setInt("material.specular", 1);
-            glBindTextureUnit(1, specular_texture);
-
-        }
 
         glm::mat4 model = transform.getModelMatrix();
         glm::mat4 projection = camera.getProjectionMatrix();

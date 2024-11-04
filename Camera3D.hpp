@@ -30,6 +30,7 @@ namespace mygl
             void processMouseScroll(float yoffset);
             
             void setCameraSpeed(float speed);
+            void setCameraNearFarPlanes(float near_plane, float far_plane);
             const float getCameraSpeed();
 
         public:
@@ -45,6 +46,9 @@ namespace mygl
             float movement_speed;
             float mouse_sensitivity;
             float fov;
+
+            float near_plane;
+            float far_plane;
 
             float width;
             float height;

@@ -5,7 +5,7 @@
 namespace mygl
 {
     Camera3D::Camera3D(glm::vec3 pos, float cam_width, float cam_height, float speed, bool is_fps) 
-    : front(glm::vec3(0.0f, 0.0f, -1.0f)), world_up(UP), mouse_sensitivity(SENSITIVITY), fov(FOV), pitch(PITCH), yaw(YAW)
+    : front(glm::vec3(0.0f, 0.0f, -1.0f)), world_up(UP), mouse_sensitivity(SENSITIVITY), fov(FOV), pitch(PITCH), yaw(YAW), near_plane(0.1), far_plane(1000.0)
     {
         initial_pos = pos;
         position = pos;
@@ -23,7 +23,7 @@ namespace mygl
 
     glm::mat4 Camera3D::getProjectionMatrix() const
     {
-        return glm::perspective(glm::radians(fov), width / height, 0.1f, 1000.0f);
+        return glm::perspective(glm::radians(fov), width / height, near_plane, far_plane);
     }
 
     void Camera3D::processKeyboard(Camera3D_Movement direction, float delta_time)
@@ -91,5 +91,11 @@ namespace mygl
     void Camera3D::setCameraSpeed(float speed)
     {
         movement_speed = speed;
+    }
+
+    void Camera3D::setCameraNearFarPlanes(float near, float far)
+    {
+        near_plane = near;
+        far_plane = far;
     }
 }
