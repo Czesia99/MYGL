@@ -28,11 +28,10 @@ namespace mygl
         return;
     }
 
-    void DefaultScene::update() 
+    void DefaultScene::update()
     {
         clock.update();
-        cube_shader.use();
-        
+
         sky.render(camera);
         cube.render(cube_shader, camera);
     }
