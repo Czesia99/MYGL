@@ -3,6 +3,7 @@
 #include "ICamera.hpp"
 #include <glad/glad.h>
 #include <glm/glm.hpp>
+#include <vector>
 
 
 namespace mygl
@@ -33,6 +34,8 @@ namespace mygl
             void setCameraNearFarPlanes(float near_plane, float far_plane);
             void setCameraLock(bool lock);
             const float getCameraSpeed();
+
+            std::vector<glm::vec4> getFrustumCornersWorldSpace();
 
         public:
             glm::vec3 position;
