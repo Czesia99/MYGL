@@ -28,9 +28,10 @@ namespace mygl
             void processKeyboard(Camera3D_Movement direction, float delta_time);
             void processMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
             void processMouseScroll(float yoffset);
-            
+
             void setCameraSpeed(float speed);
             void setCameraNearFarPlanes(float near_plane, float far_plane);
+            void setCameraLock(bool lock);
             const float getCameraSpeed();
 
         public:
@@ -40,7 +41,7 @@ namespace mygl
             glm::vec3 up;
             glm::vec3 right;
             glm::vec3 world_up;
-            
+
             float yaw;
             float pitch;
             float movement_speed;
@@ -54,6 +55,8 @@ namespace mygl
             float height;
 
             bool fps;
+
+            bool movement_lock;
 
         private:
             void updateCameraVectors();

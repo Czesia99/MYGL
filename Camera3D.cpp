@@ -4,7 +4,7 @@
 #include <iostream>
 namespace mygl
 {
-    Camera3D::Camera3D(glm::vec3 pos, float cam_width, float cam_height, float speed, bool is_fps) 
+    Camera3D::Camera3D(glm::vec3 pos, float cam_width, float cam_height, float speed, bool is_fps)
     : front(glm::vec3(0.0f, 0.0f, -1.0f)), world_up(UP), mouse_sensitivity(SENSITIVITY), fov(FOV), pitch(PITCH), yaw(YAW), near_plane(0.1), far_plane(1000.0)
     {
         initial_pos = pos;
@@ -13,6 +13,7 @@ namespace mygl
         height = cam_height;
         fps = is_fps;
         movement_speed = speed;
+        movement_lock = false;
         updateCameraVectors();
     }
 
@@ -40,9 +41,12 @@ namespace mygl
         if (fps)
             position.y = initial_pos.y;
     }
-    
+
     void Camera3D::processMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
     {
+        if (movement_lock == true)
+            return;
+
         xoffset *= mouse_sensitivity;
         yoffset *= mouse_sensitivity;
 
@@ -97,5 +101,10 @@ namespace mygl
     {
         near_plane = near;
         far_plane = far;
+    }
+
+    void Camera3D::setCameraLock(bool lock)
+    {
+        movement_lock = lock;
     }
 }
