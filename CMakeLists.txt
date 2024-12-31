@@ -18,4 +18,7 @@ set(MYGL_SRC
 
 add_library(mygl STATIC ${MYGL_SRC})
 
-target_include_directories(mygl PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(mygl PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/..
+    ${CMAKE_CURRENT_SOURCE_DIR}/../glfw/include
+)
