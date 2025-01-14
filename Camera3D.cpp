@@ -66,11 +66,14 @@ namespace mygl
 
     void Camera3D::processMouseScroll(float yoffset)
     {
-        fov -= (float)yoffset;
-        if (fov < 1.0f)
-            fov = 1.0f;
-        if (fov > 45.0f)
-            fov = 45.0f;
+        // fov -= (float)yoffset;
+        // if (fov < 1.0f)
+        //     fov = 1.0f;
+        // if (fov > 45.0f)
+        //     fov = 45.0f;
+
+        movement_speed += yoffset;
+        movement_speed = glm::clamp(movement_speed, 0.0f, 300.0f);
     }
 
     void Camera3D::updateCameraVectors()
@@ -92,7 +95,7 @@ namespace mygl
         return movement_speed;
     }
 
-    void Camera3D::setCameraSpeed(float speed)
+    void Camera3D::setMovementSpeed(float speed)
     {
         movement_speed = speed;
     }

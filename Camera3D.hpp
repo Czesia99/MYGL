@@ -30,7 +30,7 @@ namespace mygl
             void processMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
             void processMouseScroll(float yoffset);
 
-            void setCameraSpeed(float speed);
+            void setMovementSpeed(float speed);
             void setCameraNearFarPlanes(float near_plane, float far_plane);
             void setCameraLock(bool lock);
             const float getCameraSpeed();
