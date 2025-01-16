@@ -56,7 +56,7 @@ namespace mygl
             camera.processKeyboard(RIGHT, clock.delta_time);
     }
 
-    void DefaultScene::mouseCallback(GLFWwindow* window, int x, int y, int dx, int dy)
+    void DefaultScene::mouseCallback(GLFWwindow* window, int x, int y, float dx, float dy)
     {
         camera.processMouseMovement((float)dx, (float)-dy);
     }

@@ -11,7 +11,7 @@ namespace mygl
         fprintf(stderr, "%s\n", description);
     }
 
-    Context::Context(float width, float height, const char *name) {
+    Context::Context(int width, int height, const char *name) {
         win_width = width;
         win_height = height;
         win_name = name;
@@ -99,7 +99,6 @@ namespace mygl
         Context* ctx = static_cast<Context*>(glfwGetWindowUserPointer(window));
         ctx->win_width = width;
         ctx->win_height = height;
-        ctx->aspect_ratio = width / height;
         if (ctx->current_scene != nullptr) {
             ctx->current_scene->framebufferSizeCallback(window, width, height);
         }

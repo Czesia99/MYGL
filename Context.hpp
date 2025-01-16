@@ -11,23 +11,22 @@ namespace mygl
 
     class Context {
         public:
-            Context(float width = 1280, float height = 720, const char *name = "MYGL");
+            Context(int width = 1280, int height = 720, const char *name = "MYGL");
             void setCallbacks();
             void loadScene(Scene *scene);
             void loadSceneId(int id);
             void run();
 
             GLFWwindow *window;
-            float win_width;
-            float win_height;
-            float aspect_ratio = win_width / win_height;
+            int win_width = 0;
+            int win_height = 0;
             const char *win_name;
             int mouse_x = 0;
             int mouse_y = 0;
 
             Scene *current_scene = nullptr;
             std::vector<Scene*> scenes;
-        
+
             DefaultScene *default_scene;
 
         private:

@@ -4,7 +4,7 @@
 #include <iostream>
 namespace mygl
 {
-    Camera3D::Camera3D(glm::vec3 pos, float cam_width, float cam_height, float speed, bool is_fps)
+    Camera3D::Camera3D(glm::vec3 pos, int cam_width, int cam_height, float speed, bool is_fps)
     : front(glm::vec3(0.0f, 0.0f, -1.0f)), world_up(UP), mouse_sensitivity(SENSITIVITY), fov(FOV), pitch(PITCH), yaw(YAW), near_plane(0.1), far_plane(1000.0)
     {
         initial_pos = pos;
@@ -24,10 +24,10 @@ namespace mygl
 
     glm::mat4 Camera3D::getProjectionMatrix() const
     {
-        return glm::perspective(glm::radians(fov), width / height, near_plane, far_plane);
+        return glm::perspective(glm::radians(fov), (float)width / height, near_plane, far_plane);
     }
 
-    void Camera3D::processKeyboard(Camera3D_Movement direction, float delta_time)
+    void Camera3D::processKeyboard(Camera3D_Movement direction, double delta_time)
     {
         float velocity = movement_speed * delta_time;
         if (direction == FORWARD)

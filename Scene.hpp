@@ -10,7 +10,7 @@
 #include "Skybox.hpp"
 #include "Shape.hpp"
 
-namespace mygl 
+namespace mygl
 {
     class Context;
 
@@ -26,7 +26,7 @@ namespace mygl
             virtual void update() = 0;
             virtual void sceneClear() = 0;
             virtual void processInput() = 0;
-            virtual void mouseCallback(GLFWwindow* window, int x, int y, int dx, int dy) = 0;
+            virtual void mouseCallback(GLFWwindow* window, int x, int y, float dx, float dy) = 0;
             virtual void leftClickCallback(GLFWwindow* window, int button, int action, int mods) = 0;
             virtual void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) = 0;
             virtual void framebufferSizeCallback(GLFWwindow* window, int width, int height) = 0;
@@ -41,7 +41,7 @@ namespace mygl
             void update() override;
             void sceneClear() override;
             void processInput() override;
-            void mouseCallback(GLFWwindow* window, int x, int y, int dx, int dy);
+            void mouseCallback(GLFWwindow* window, int x, int y, float dx, float dy);
             void leftClickCallback(GLFWwindow* window, int button, int action, int mods) override;
             void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) override;
             void framebufferSizeCallback(GLFWwindow* window, int width, int height) override;

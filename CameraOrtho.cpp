@@ -2,7 +2,7 @@
 
 namespace mygl
 {
-    CameraOrtho::CameraOrtho(glm::vec3 position, float win_width, float win_height)
+    CameraOrtho::CameraOrtho(glm::vec3 position, int win_width, int win_height)
     : front(glm::vec3(0.0f, 0.0f, -1.0f))
     {
         position = position;
