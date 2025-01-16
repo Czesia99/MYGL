@@ -15,7 +15,7 @@ namespace mygl
         RIGHT
     };
 
-    const float YAW         = -90.0f;
+    const float YAW         =  90.0f;
     const float PITCH       =  0.0f;
     const float SENSITIVITY =  0.1f;
     const float FOV         =  45.0f;
@@ -30,13 +30,13 @@ namespace mygl
             void processMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
             void processMouseScroll(float yoffset);
 
-            void setCameraSpeed(float speed);
+            void setMovementSpeed(float speed);
             void setCameraNearFarPlanes(float near_plane, float far_plane);
             void setCameraLock(bool lock);
             const float getCameraSpeed();
 
             std::vector<glm::vec4> getFrustumCornersWorldSpace();
-
+            void updateCameraVectors();
         public:
             glm::vec3 position;
             glm::vec3 initial_pos;
@@ -62,6 +62,6 @@ namespace mygl
             bool movement_lock;
 
         private:
-            void updateCameraVectors();
+
     };
 }

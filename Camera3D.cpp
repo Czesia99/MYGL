@@ -92,7 +92,7 @@ namespace mygl
         return movement_speed;
     }
 
-    void Camera3D::setCameraSpeed(float speed)
+    void Camera3D::setMovementSpeed(float speed)
     {
         movement_speed = speed;
     }
