@@ -62,6 +62,7 @@ namespace mygl
             glfwSwapBuffers(window);
             glfwPollEvents();
         }
+        current_scene->closeScene();
         // ma_engine_uninit(&sound_manager.engine);
     }
 
@@ -82,7 +83,7 @@ namespace mygl
         return window;
     };
 
-    int Context::loadGlad() 
+    int Context::loadGlad()
     {
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
         {
@@ -93,7 +94,7 @@ namespace mygl
         return 0;
     };
 
-    void Context::framebufferSizeCallbackWrapper(GLFWwindow* window, int width, int height) 
+    void Context::framebufferSizeCallbackWrapper(GLFWwindow* window, int width, int height)
     {
         Context* ctx = static_cast<Context*>(glfwGetWindowUserPointer(window));
         ctx->win_width = width;
@@ -101,7 +102,7 @@ namespace mygl
         ctx->aspect_ratio = width / height;
         if (ctx->current_scene != nullptr) {
             ctx->current_scene->framebufferSizeCallback(window, width, height);
-        }   
+        }
     }
 
     void Context::mouseCallbackWrapper(GLFWwindow* window, double x, double y)
@@ -128,7 +129,7 @@ namespace mygl
         }
     }
 
-    void Context::leftClickCallbackWrapper(GLFWwindow* window, int button, int action, int mods) 
+    void Context::leftClickCallbackWrapper(GLFWwindow* window, int button, int action, int mods)
     {
         Context* ctx = static_cast<Context*>(glfwGetWindowUserPointer(window));
 
