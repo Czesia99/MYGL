@@ -2,14 +2,14 @@
 
 #include <GLFW/glfw3.h>
 
-namespace mygl 
+namespace mygl
 {
     class Clock
     {
         public:
             double current_time = 0.0f;
-            float delta_time = 0.0f;
-            float last_frame = 0.0f;
+            double delta_time = 0.0f;
+            double last_frame = 0.0f;
 
             Clock() { update(); };
 
