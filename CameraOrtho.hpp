@@ -28,7 +28,7 @@ namespace mygl
             float pitch;
 
             float movement_speed;
-            float mouse_sensitivity;
+            float sensitivity;
             float fov;
 
             float width;

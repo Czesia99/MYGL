@@ -5,13 +5,20 @@
 namespace mygl
 {
     Camera3D::Camera3D(glm::vec3 pos, int cam_width, int cam_height, float speed, bool is_fps)
-    : front(glm::vec3(0.0f, 0.0f, -1.0f)), world_up(WORLD_UP), mouse_sensitivity(SENSITIVITY), fov(FOV), pitch(PITCH), yaw(YAW), near_plane(0.1), far_plane(1000.0)
     {
         initial_pos = pos;
         position = pos;
+        front = FRONT;
         width = cam_width;
         height = cam_height;
         fps = is_fps;
+        world_up = WORLD_UP;
+        sensitivity = SENSITIVITY;
+        fov = FOV;
+        pitch = PITCH;
+        yaw = YAW;
+        near_plane = 0.1f;
+        far_plane = 1000.0f;
         movement_speed = speed;
         movement_lock = false;
         updateCameraVectors();
@@ -27,7 +34,7 @@ namespace mygl
         return glm::perspective(glm::radians(fov), (float)width / height, near_plane, far_plane);
     }
 
-    void Camera3D::processKeyboard(Camera3D_Movement direction, double delta_time)
+    void Camera3D::processKeyboardMovement(Camera3D_Movement direction, double delta_time)
     {
         float velocity = movement_speed * delta_time;
         if (direction == FORWARD)
@@ -51,8 +58,8 @@ namespace mygl
         if (movement_lock == true)
             return;
 
-        xoffset *= mouse_sensitivity;
-        yoffset *= mouse_sensitivity;
+        xoffset *= sensitivity;
+        yoffset *= sensitivity;
 
         yaw   += xoffset;
         pitch += yoffset;
@@ -94,23 +101,18 @@ namespace mygl
     }
 
     //getter and setter
-    const float Camera3D::getCameraSpeed()
-    {
-        return movement_speed;
-    }
-
     void Camera3D::setMovementSpeed(float speed)
     {
         movement_speed = speed;
     }
 
-    void Camera3D::setCameraNearFarPlanes(float near, float far)
+    void Camera3D::setNearFarPlanes(float near, float far)
     {
         near_plane = near;
         far_plane = far;
     }
 
-    void Camera3D::setCameraLock(bool lock)
+    void Camera3D::setLock(bool lock)
     {
         movement_lock = lock;
     }

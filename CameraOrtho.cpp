@@ -9,7 +9,7 @@ namespace mygl
         width = win_width;
         height = win_height;
         movement_speed = 2.5f;
-        mouse_sensitivity = 0.1f;
+        sensitivity = 0.1f;
         world_up = glm::vec3(0.0f, 1.0f, 0.0f);
 
         updateCameraVectors();

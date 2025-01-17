@@ -17,25 +17,26 @@ namespace mygl
         DOWN
     };
 
-    const float YAW         =  -90.0f;
-    const float PITCH       =  0.0f;
-    const float SENSITIVITY =  0.1f;
-    const float FOV         =  45.0f;
-    const glm::vec3 WORLD_UP      =  glm::vec3(0.0f, 1.0f, 0.0f);
+    const float YAW             =  -90.0f;
+    const float PITCH           =  0.0f;
+    const float SENSITIVITY     =  0.1f;
+    const float FOV             =  45.0f;
+    const glm::vec3 DEFAULT_POS = glm::vec3(0.0f, 0.0f, 0.0f);
+    const glm::vec3 FRONT       =  glm::vec3(0.0f, 0.0f, -1.0f);
+    const glm::vec3 WORLD_UP    =  glm::vec3(0.0f, 1.0f, 0.0f);
 
     class Camera3D : public ICamera {
         public:
-            Camera3D(glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f), int cam_width = 1980, int cam_height = 1080, float speed = 2.5f, bool is_fps = false);
+            Camera3D(glm::vec3 pos = DEFAULT_POS, int cam_width = 1980, int cam_height = 1080, float speed = 2.5f, bool is_fps = false);
             glm::mat4 getViewMatrix() const;
             glm::mat4 getProjectionMatrix() const;
-            void processKeyboard(Camera3D_Movement direction, double delta_time);
+            void processKeyboardMovement(Camera3D_Movement direction, double delta_time);
             void processMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
             void processMouseScroll(float yoffset);
 
             void setMovementSpeed(float speed);
-            void setCameraNearFarPlanes(float near_plane, float far_plane);
-            void setCameraLock(bool lock);
-            const float getCameraSpeed();
+            void setNearFarPlanes(float near_plane, float far_plane);
+            void setLock(bool lock);
 
             std::vector<glm::vec4> getFrustumCornersWorldSpace();
             void updateCameraVectors();
@@ -50,7 +51,7 @@ namespace mygl
             float yaw;
             float pitch;
             float movement_speed;
-            float mouse_sensitivity;
+            float sensitivity;
             float fov;
 
             float near_plane;

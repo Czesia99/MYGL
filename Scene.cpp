@@ -47,13 +47,13 @@ namespace mygl
         glfwSetWindowShouldClose(ctx.window, true);
 
         if (glfwGetKey(ctx.window, GLFW_KEY_W) == GLFW_PRESS)
-            camera.processKeyboard(FORWARD, clock.delta_time);
+            camera.processKeyboardMovement(FORWARD, clock.delta_time);
         if (glfwGetKey(ctx.window, GLFW_KEY_S) == GLFW_PRESS)
-            camera.processKeyboard(BACKWARD, clock.delta_time);
+            camera.processKeyboardMovement(BACKWARD, clock.delta_time);
         if (glfwGetKey(ctx.window, GLFW_KEY_A) == GLFW_PRESS)
-            camera.processKeyboard(LEFT, clock.delta_time);
+            camera.processKeyboardMovement(LEFT, clock.delta_time);
         if (glfwGetKey(ctx.window, GLFW_KEY_D) == GLFW_PRESS)
-            camera.processKeyboard(RIGHT, clock.delta_time);
+            camera.processKeyboardMovement(RIGHT, clock.delta_time);
     }
 
     void DefaultScene::mouseCallback(GLFWwindow* window, int x, int y, float dx, float dy)
