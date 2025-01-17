@@ -5,7 +5,7 @@
 namespace mygl
 {
     Camera3D::Camera3D(glm::vec3 pos, int cam_width, int cam_height, float speed, bool is_fps)
-    : front(glm::vec3(0.0f, 0.0f, -1.0f)), world_up(UP), mouse_sensitivity(SENSITIVITY), fov(FOV), pitch(PITCH), yaw(YAW), near_plane(0.1), far_plane(1000.0)
+    : front(glm::vec3(0.0f, 0.0f, -1.0f)), world_up(WORLD_UP), mouse_sensitivity(SENSITIVITY), fov(FOV), pitch(PITCH), yaw(YAW), near_plane(0.1), far_plane(1000.0)
     {
         initial_pos = pos;
         position = pos;
@@ -38,6 +38,10 @@ namespace mygl
             position -= right * velocity;
         if (direction == RIGHT)
             position += right * velocity;
+        if (direction == UP)
+            position += WORLD_UP * velocity;
+        if (direction == DOWN)
+            position -= WORLD_UP * velocity;
         if (fps)
             position.y = initial_pos.y;
     }
