@@ -9,7 +9,7 @@ namespace mygl
     void loadTexture(const char *file, unsigned int &texture, int min_filter, int mag_filter, int wrap)
     {
         glCreateTextures(GL_TEXTURE_2D, 1, &texture);
-        
+
         int width, height, nrComponents;
         unsigned char *data = stbi_load(file, &width, &height, &nrComponents, 0);
         if (data)
@@ -55,7 +55,12 @@ namespace mygl
         stbi_set_flip_vertically_on_load(true);
         glCreateTextures(GL_TEXTURE_2D_ARRAY, 1, &texture);
         int nrComponents;
-        glTextureStorage3D(texture, 1, GL_RGBA8, width, height, files.size());
+
+        glTextureParameteri(texture, GL_TEXTURE_WRAP_S, wrap);
+        glTextureParameteri(texture, GL_TEXTURE_WRAP_T, wrap);
+        glTextureParameteri(texture, GL_TEXTURE_MIN_FILTER, min_filter);
+        glTextureParameteri(texture, GL_TEXTURE_MAG_FILTER, mag_filter);
+        glTextureStorage3D(texture, 4, GL_RGBA8, width, height, files.size());
 
         for (int i = 0; i < files.size(); i++)
         {
@@ -68,18 +73,14 @@ namespace mygl
                     format = GL_RGB;
                 else if (nrComponents == 4)
                     format = GL_RGBA;
-                
+
                 glTextureSubImage3D(texture, 0, 0, 0, i, width, height, 1, format, GL_UNSIGNED_BYTE, data);
+                glGenerateTextureMipmap(texture);
                 stbi_image_free(data);
             } else
             {
                 std::cout << "Texture failed to load at path: " << files[i] << std::endl;
             }
         }
-
-        glTextureParameteri(texture, GL_TEXTURE_WRAP_S, wrap);
-        glTextureParameteri(texture, GL_TEXTURE_WRAP_T, wrap);
-        glTextureParameteri(texture, GL_TEXTURE_MIN_FILTER, min_filter);
-        glTextureParameteri(texture, GL_TEXTURE_MAG_FILTER, mag_filter);
     }
 }
