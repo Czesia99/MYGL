@@ -26,6 +26,7 @@ namespace mygl
             virtual void update() = 0;
             virtual void sceneClear() = 0;
             virtual void processInput() = 0;
+            virtual void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) = 0;
             virtual void mouseCallback(GLFWwindow* window, int x, int y, float dx, float dy) = 0;
             virtual void leftClickCallback(GLFWwindow* window, int button, int action, int mods) = 0;
             virtual void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) = 0;
@@ -41,7 +42,8 @@ namespace mygl
             void update() override;
             void sceneClear() override;
             void processInput() override;
-            void mouseCallback(GLFWwindow* window, int x, int y, float dx, float dy);
+            void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) override;
+            void mouseCallback(GLFWwindow* window, int x, int y, float dx, float dy) override;
             void leftClickCallback(GLFWwindow* window, int button, int action, int mods) override;
             void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) override;
             void framebufferSizeCallback(GLFWwindow* window, int width, int height) override;

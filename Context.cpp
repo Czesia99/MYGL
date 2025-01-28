@@ -28,6 +28,7 @@ namespace mygl
         glfwSetCursorPosCallback(window, mouseCallbackWrapper);
         glfwSetMouseButtonCallback(window, leftClickCallbackWrapper);
         glfwSetScrollCallback(window, scrollCallbackWrapper);
+        glfwSetKeyCallback(window, keyCallbackWrapper);
         glfwSetErrorCallback(GLFW_error);
     }
 
@@ -101,6 +102,15 @@ namespace mygl
         ctx->win_height = height;
         if (ctx->current_scene != nullptr) {
             ctx->current_scene->framebufferSizeCallback(window, width, height);
+        }
+    }
+
+    void Context::keyCallbackWrapper(GLFWwindow* window, int key, int scancode, int action, int mods)
+    {
+        Context* ctx = static_cast<Context*>(glfwGetWindowUserPointer(window));
+
+        if (ctx->current_scene != nullptr) {
+            ctx->current_scene->keyCallback(window, key, scancode, action, mods);
         }
     }
 

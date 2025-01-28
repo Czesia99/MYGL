@@ -43,9 +43,6 @@ namespace mygl
 
     void DefaultScene::processInput()
     {
-        if (glfwGetKey(ctx.window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(ctx.window, true);
-
         if (glfwGetKey(ctx.window, GLFW_KEY_W) == GLFW_PRESS)
             camera.processKeyboardMovement(FORWARD, clock.delta_time);
         if (glfwGetKey(ctx.window, GLFW_KEY_S) == GLFW_PRESS)
@@ -54,6 +51,14 @@ namespace mygl
             camera.processKeyboardMovement(LEFT, clock.delta_time);
         if (glfwGetKey(ctx.window, GLFW_KEY_D) == GLFW_PRESS)
             camera.processKeyboardMovement(RIGHT, clock.delta_time);
+    }
+
+    void DefaultScene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+    {
+        if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        {
+            glfwSetWindowShouldClose(ctx.window, true);
+        }
     }
 
     void DefaultScene::mouseCallback(GLFWwindow* window, int x, int y, float dx, float dy)

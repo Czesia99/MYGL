@@ -33,6 +33,7 @@ namespace mygl
             GLFWwindow *createWindow();
             int loadGlad();
             static void framebufferSizeCallbackWrapper(GLFWwindow* window, int width, int height);
+            static void keyCallbackWrapper(GLFWwindow* window, int key, int scancode, int action, int mods);
             static void mouseCallbackWrapper(GLFWwindow* window, double xpos, double ypos);
             static void scrollCallbackWrapper(GLFWwindow* window, double xoffset, double yoffset);
             static void leftClickCallbackWrapper(GLFWwindow* window, int button, int action, int mods);
