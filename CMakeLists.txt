@@ -13,6 +13,7 @@ set(MYGL_SRC
     Shape.cpp
     Skybox.cpp
     Texture.cpp
+    Toolbox.cpp
     stb_image.cpp
 )
 
