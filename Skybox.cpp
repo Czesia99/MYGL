@@ -14,27 +14,19 @@ namespace mygl
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
 
-        std::vector<std::string> faces = {
-            "../assets/textures/skybox/right.jpg",
-            "../assets/textures/skybox/left.jpg",
-            "../assets/textures/skybox/top.jpg",
-            "../assets/textures/skybox/bottom.jpg",
-            "../assets/textures/skybox/front.jpg",
-            "../assets/textures/skybox/back.jpg"
-        };
-        cubemap_texture = load_cubemap(faces);
-        skybox_shader = Shader("skybox.vs", "skybox.fs");
+        // cubemap_texture = load_cubemap(faces);
+        // skybox_shader = Shader("sky2.vs", "sky2.fs");
         transform.position = {0.0f, 0.0f, 0.0f};
     }
 
-    void Skybox::render(const ICamera &camera) {
+    void Skybox::render(const ICamera &camera, const Shader &shader) {
         glm::mat4 projection = camera.getProjectionMatrix();
         glm::mat4 view = glm::mat4(glm::mat3(camera.getViewMatrix()));
         // glDepthMask(GL_FALSE);
         glDepthFunc(GL_LEQUAL);
-        skybox_shader.use();
-        skybox_shader.setMat4("view", view);
-        skybox_shader.setMat4("projection", projection);
+        shader.use();
+        shader.setMat4("view", view);
+        shader.setMat4("projection", projection);
         glBindVertexArray(vao);
         glBindTexture(GL_TEXTURE_CUBE_MAP, cubemap_texture);
         glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -42,7 +34,7 @@ namespace mygl
         // glDepthMask(GL_TRUE);
     }
 
-    unsigned int Skybox::load_cubemap(std::vector<std::string> faces) 
+    unsigned int Skybox::load_cubemap(std::vector<std::string> faces)
     {
         unsigned int texture_id;
         glGenTextures(1, &texture_id);
@@ -54,7 +46,7 @@ namespace mygl
             unsigned char *data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
             if (data)
             {
-                glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 
+                glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
                             0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data
                 );
                 stbi_image_free(data);

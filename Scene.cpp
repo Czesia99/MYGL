@@ -9,7 +9,11 @@ namespace mygl
     DefaultScene::DefaultScene(Context &ctx) : Scene(ctx)
     {
         cube_shader = Shader("default_cube.vs", "default_cube.fs");
+        sky.cubemap_texture = sky.load_cubemap(sky.faces);
+        sky_shader = Shader("skybox.vs", "skybox.fs");
         cube.transform.position.z += 10.0;
+
+        sky_shader.use();
     }
 
     void DefaultScene::storeSceneInCtx()
@@ -30,9 +34,10 @@ namespace mygl
 
     void DefaultScene::update()
     {
+        sceneClear();
         clock.update();
 
-        sky.render(camera);
+        sky.render(camera, sky_shader);
         cube.render(cube_shader, camera);
     }
 

@@ -53,6 +53,7 @@ namespace mygl
             Skybox sky;
             Clock clock;
             Cube cube;
+            Shader sky_shader;
             Shader cube_shader;
             GLuint dirt_texture;
     };

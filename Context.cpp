@@ -56,7 +56,7 @@ namespace mygl
 
         while (!glfwWindowShouldClose(window))
         {
-            current_scene->sceneClear();
+            // current_scene->sceneClear();
             current_scene->processInput();
             current_scene->update();
 
