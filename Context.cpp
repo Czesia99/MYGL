@@ -21,6 +21,11 @@ namespace mygl
         default_scene = new DefaultScene(*this);
     };
 
+    Context::~Context()
+    {
+        delete (default_scene);
+    }
+
     void Context::setCallbacks()
     {
         glfwSetWindowUserPointer(window, this); //set windowindow pointer

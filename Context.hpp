@@ -12,6 +12,7 @@ namespace mygl
     class Context {
         public:
             Context(int width = 1280, int height = 720, const char *name = "MYGL");
+            ~Context();
             void setCallbacks();
             void loadScene(Scene *scene);
             void loadSceneId(int id);
